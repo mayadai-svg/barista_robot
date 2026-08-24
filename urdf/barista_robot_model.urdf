@@ -211,7 +211,7 @@
     </gazebo>
 
     <joint name="joint_drive_wheel_left" type="continuous">
-        <origin xyz="0 0.11 -0.0775" rpy="0 0 0"/>
+        <origin xyz="0 0.11 -0.0523" rpy="0 0 0"/>
         <parent link="main_body"/>
         <child link="drive_wheel_left"/>
         <axis rpy="0 0 0" xyz="0 1 0"/>
@@ -260,7 +260,7 @@
     </gazebo>
 
     <joint name="joint_drive_wheel_right" type="continuous">
-        <origin xyz="0 -0.11 -0.0775" rpy="0 0 0"/>
+        <origin xyz="0 -0.11 -0.0523" rpy="0 0 0"/>
         <parent link="main_body"/>
         <child link="drive_wheel_right"/>
         <axis rpy="0 0 0" xyz="0 1 0"/>
@@ -294,7 +294,7 @@
     </link>
 
     <joint name="front_yaw_joint" type="continuous">
-        <origin xyz="0.04 0 -0.05" rpy="0 0 0"/>
+        <origin xyz="0.11 0 -0.0775" rpy="0 0 0"/>
         <parent link="main_body"/>
         <child link="front_yaw_link"/>
         <axis xyz="0 0 1" />
@@ -411,7 +411,7 @@
     </link>
 
     <joint name="back_yaw_joint" type="continuous">
-        <origin xyz="-0.04 0 -0.05" rpy="0 0 0"/>
+        <origin xyz="-0.11 0 -0.0775" rpy="0 0 0"/>
         <parent link="main_body"/>
         <child link="back_yaw_link"/>
         <axis xyz="0 0 1" />

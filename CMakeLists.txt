@@ -20,6 +20,7 @@ install(
     urdf
     rviz
     launch
+	meshes
   DESTINATION
     share/${PROJECT_NAME}/
 )

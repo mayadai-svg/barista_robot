@@ -5,7 +5,5 @@
     <!-- Read robot_description and spawn in gazebo running sim -->
     <include file="$(find-pkg-share barista_robot_gazebo)/launch/spawn_robot_description.launch.py"/>
     <!-- Load the controllers -->
-    <!-- 
     <include file="$(find-pkg-share barista_robot_gazebo)/launch/control_position_velocity.launch.py"/>
-    -->
 </launch>

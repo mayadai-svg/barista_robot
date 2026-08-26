@@ -521,19 +521,16 @@
         <inertial>
 
         <mass value="0.01"/>
-        <origin rpy="0 0 0" xyz="0 0 0.0204"/>
+        <origin rpy="0 0 0" xyz="0 0 0.01"/>
         <inertia ixx="6.066578520833334e-06" ixy="0" ixz="0" iyy="6.072950163333333e-06" iyz="0" izz="9.365128684166666e-06"/>
         </inertial>
     </link>
 
-    <joint name="laser_scan_link_joint" type="continuous">
-        <origin rpy="0 0 0" xyz="0.0 0.0 0.05"/>
+    <joint name="laser_scan_link_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0775"/>
         <parent link="main_body"/>
         <child link="laser_scan_link"/>
-        <axis xyz="0 0 1"/>
-        <limit lower="-0.1" upper="0.0" effort="20.0" velocity="2.0"/>
-        <dynamics damping="0.1" friction="1.0"/>
-    </joint>
+    </joint>  
 
     <link name="laser_scan_frame">
     </link>
@@ -570,7 +567,8 @@
     </link>
 
     <joint name="laser_scan_model_link_joint" type="continuous">
-        <origin rpy="0 0 0" xyz="0.11 0.0 0.0275"/>
+        <origin rpy="0 0 0" xyz="0.11 0.0 0.0"/>
+        <!-- <origin rpy="0 0 0" xyz="0.11 0.0 0.0275"/> -->
         <parent link="laser_scan_link"/>
         <child link="laser_scan_model_link"/>
         <axis xyz="0 0 1"/>
@@ -625,16 +623,6 @@
             <!-- Gazebo Sim integration plugin -->
             <plugin>gz_ros2_control/GazeboSimSystem</plugin>
         </hardware>
-
-        <joint name="laser_scan_link_joint">
-        <command_interface name="position">
-            <param name="min">-0.05</param>
-            <param name="max">0.0</param>
-        </command_interface>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-        </joint>
 
         <joint name="laser_scan_model_link_joint">
             <command_interface name="velocity">

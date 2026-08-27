@@ -7,11 +7,9 @@ from launch.substitutions import (PathJoinSubstitution, Command, LaunchConfigura
 from launch_ros.actions import (Node, SetParameter)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
-# this is the function launch  system will look for
 def generate_launch_description():
 
     urdf_file = 'barista_robot_model.urdf'
-    #xacro_file = "urdfbot.xacro"
     package_description = "barista_robot_description"
 
     # Get Package Directory

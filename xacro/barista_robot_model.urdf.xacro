@@ -101,10 +101,4 @@
     </plugin>
   </gazebo>
 
-  <gazebo>
-    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-      <parameters>$(find barista_robot_description)/config/controller_position_velocity.yaml</parameters>
-    </plugin>
-  </gazebo>
-
 </robot>

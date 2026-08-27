@@ -3,6 +3,7 @@ import os
 from ament_index_python.packages import (get_package_prefix, get_package_share_directory)
 from launch import LaunchDescription
 from launch.actions import (DeclareLaunchArgument, IncludeLaunchDescription)
+from launch.conditions import IfCondition
 from launch.substitutions import (Command, PathJoinSubstitution, LaunchConfiguration)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import SetParameter, Node
@@ -122,8 +123,20 @@ def generate_launch_description():
             "/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V",
             "/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry",
             "/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model",
-            "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan"
+            # "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan"
         ],
+        output="screen",
+    )
+
+    # Only publish /scan if include_laser=true
+    gz_laser_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        name="gz_laser_bridge",
+        arguments=[
+            "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan",
+        ],
+        condition=IfCondition(LaunchConfiguration("include_laser")),
         output="screen",
     )
 
@@ -140,6 +153,7 @@ def generate_launch_description():
             rviz_node,
             gz_sim,
             gz_spawn_entity,
-            gz_bridge
+            gz_bridge,
+            gz_laser_bridge
         ]
     )

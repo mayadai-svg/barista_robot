@@ -100,6 +100,13 @@
         <state_interface name="effort"/>
       </joint>
     </ros2_control>
+
+    <!-- Gazebo ROS 2 Control Plugin -->
+    <gazebo>
+      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>$(find barista_robot_description)/config/controller_position_velocity.yaml</parameters>
+      </plugin>
+    </gazebo>
   </xacro:macro>
 
 </robot>

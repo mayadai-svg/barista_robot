@@ -527,7 +527,7 @@
     </link>
 
     <joint name="laser_scan_link_joint" type="fixed">
-        <origin rpy="0 0 0" xyz="0.0 0.0 0.0775"/>
+        <origin rpy="0 0 0" xyz="0.11 0.0 0.0775"/>
         <parent link="main_body"/>
         <child link="laser_scan_link"/>
     </joint>  
@@ -567,7 +567,7 @@
     </link>
 
     <joint name="laser_scan_model_link_joint" type="continuous">
-        <origin rpy="0 0 0" xyz="0.11 0.0 0.0"/>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
         <!-- <origin rpy="0 0 0" xyz="0.11 0.0 0.0275"/> -->
         <parent link="laser_scan_link"/>
         <child link="laser_scan_model_link"/>

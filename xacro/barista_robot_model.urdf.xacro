@@ -28,9 +28,9 @@
       <geometry><cylinder radius="0.178" length="0.155"/></geometry>
     </collision>
     <inertial>
-      <mass value="0.5"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.004962" ixy="0" ixz="0" iyy="0.004962" iyz="0" izz="0.007921"/>
+        <mass value="0.2"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <inertia ixx="0.0019846" ixy="0" ixz="0" iyy="0.0019846" iyz="0" izz="0.0031684"/>
     </inertial>
   </link>
 
@@ -41,25 +41,25 @@
   </joint>
 
   <!-- Drive Wheels -->
-  <xacro:drive_wheel location="left" parent="main_body" origin_xyz="0 0.11 -0.0523"/>
-  <xacro:drive_wheel location="right" parent="main_body" origin_xyz="0 -0.11 -0.0523"/>
+  <xacro:drive_wheel location="left" parent="main_body" origin_xyz="0 0.128 -0.0775"/>
+  <xacro:drive_wheel location="right" parent="main_body" origin_xyz="0 -0.128 -0.0775"/>
 
   <!-- Casters -->
-  <xacro:caster_wheel location="front" parent="main_body" origin_xyz="0.11 0 -0.0775"/>
-  <xacro:caster_wheel location="back" parent="main_body" origin_xyz="-0.11 0 -0.0775"/>
+  <xacro:caster_wheel location="front" parent="main_body" origin_xyz="0.12 0 -0.0775"/>
+  <xacro:caster_wheel location="back" parent="main_body" origin_xyz="-0.12 0 -0.0775"/>
 
   <!-- Standoff Rods -->
-  <xacro:standoff_rod prefix="1" parent="main_body" origin_xyz="0.06 0.10 0.1875"/>
-  <xacro:standoff_rod prefix="2" parent="main_body" origin_xyz="-0.06 0.10 0.1875"/>
-  <xacro:standoff_rod prefix="3" parent="main_body" origin_xyz="-0.06 -0.10 0.1875"/>
-  <xacro:standoff_rod prefix="4" parent="main_body" origin_xyz="0.06 -0.10 0.1875"/>
+  <xacro:standoff_rod prefix="1" parent="main_body" origin_xyz="0.05 0.12 0.1875"/>
+  <xacro:standoff_rod prefix="2" parent="main_body" origin_xyz="-0.05 0.12 0.1875"/>
+  <xacro:standoff_rod prefix="3" parent="main_body" origin_xyz="-0.05 -0.12 0.1875"/>
+  <xacro:standoff_rod prefix="4" parent="main_body" origin_xyz="0.05 -0.12 0.1875"/>
 
   <!-- Cup Holder Tray -->
   <xacro:cup_holder_tray parent="main_body" origin_xyz="0 0 0.3425"/>
 
   <!-- Conditional Laser Scanner -->
   <xacro:if value="$(arg include_laser)">
-    <xacro:laser_scanner parent="main_body" origin_xyz="0.11 0.0 0.0775"/>
+    <xacro:laser_scanner parent="main_body" origin_xyz="0.1 0.0 0.0775"/>
   </xacro:if>
 
   <!-- Gazebo Core Plugins -->
@@ -82,7 +82,7 @@
     <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
       <left_joint>joint_drive_wheel_left</left_joint>
       <right_joint>joint_drive_wheel_right</right_joint>
-      <wheel_separation>0.22</wheel_separation>
+      <wheel_separation>0.256</wheel_separation>
       <wheel_radius>0.0352</wheel_radius>
       <topic>cmd_vel</topic>
       <publish_odom>true</publish_odom>

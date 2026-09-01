@@ -3,19 +3,23 @@
 
   <xacro:macro name="laser_scanner" params="parent origin_xyz">
     <link name="laser_scan_link">
-      <visual>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry><box size="0.02 0.02 0.02"/></geometry>
-      </visual>
-      <collision>
-        <origin rpy="0 0 0" xyz="0 0 0.0204"/>
-        <geometry><box size="0.02 0.02 0.02"/></geometry>
-      </collision>
-      <inertial>
-        <mass value="0.01"/>
-        <origin rpy="0 0 0" xyz="0 0 0.01"/>
-        <inertia ixx="6.0665e-06" ixy="0" ixz="0" iyy="6.0729e-06" iyz="0" izz="9.3651e-06"/>
-      </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://barista_robot_description/meshes/slamtec_rplidar_s1.dae" scale="1.0 1.0 1.0"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0.0204"/>
+            <geometry>
+                <box size="0.074986 0.074935 0.0408"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.01"/>
+            <origin rpy="0 0 0" xyz="0 0 0.0204"/>
+            <inertia ixx="6.066578520833334e-06" ixy="0" ixz="0" iyy="6.072950163333333e-06" iyz="0" izz="9.365128684166666e-06"/>
+        </inertial>
     </link>
 
     <joint name="laser_scan_link_joint" type="fixed">
@@ -25,38 +29,11 @@
     </joint>
 
     <link name="laser_scan_frame"/>
+
     <joint name="laser_scan_frame_joint" type="fixed">
       <origin rpy="0 0 0" xyz="0 0 0.03"/>
       <parent link="laser_scan_link"/>
       <child link="laser_scan_frame"/>
-    </joint>
-
-    <!-- Mesh Visual Model -->
-    <link name="laser_scan_model_link">
-      <visual>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://barista_robot_description/meshes/slamtec_rplidar_s1.dae" scale="1.0 1.0 1.0"/>
-        </geometry>
-      </visual>
-      <collision>
-        <origin rpy="0 0 0" xyz="0 0 0.0204"/>
-        <geometry><cylinder length="0.0408" radius="0.037493"/></geometry>
-      </collision>
-      <inertial>
-        <mass value="0.01"/>
-        <origin rpy="0 0 0" xyz="0 0 0.0204"/>
-        <inertia ixx="6.0665e-06" ixy="0" ixz="0" iyy="6.0729e-06" iyz="0" izz="9.3651e-06"/>
-      </inertial>
-    </link>
-
-    <joint name="laser_scan_model_link_joint" type="continuous">
-      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
-      <parent link="laser_scan_link"/>
-      <child link="laser_scan_model_link"/>
-      <axis xyz="0 0 1"/>
-      <limit effort="10.0" velocity="2.0"/>
-      <dynamics friction="0.01"/>
     </joint>
 
     <!-- Laser Scanner Sensor Plugin -->
@@ -66,7 +43,7 @@
         <gz_frame_id>laser_scan_frame</gz_frame_id>
         <always_on>1</always_on>
         <visualize>true</visualize>
-        <update_rate>100</update_rate>
+        <update_rate>30</update_rate>
         <topic>scan</topic>
         <ray>
           <scan>
@@ -85,28 +62,5 @@
         </ray>
       </sensor>
     </gazebo>
-
-    <ros2_control name="GazeboSimSystem" type="system">
-      <hardware>
-        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
-      </hardware>
-      <joint name="laser_scan_model_link_joint">
-        <command_interface name="velocity">
-          <param name="min">0.0</param>
-          <param name="max">2.0</param>
-        </command_interface>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint>
-    </ros2_control>
-
-    <!-- Gazebo ROS 2 Control Plugin -->
-    <gazebo>
-      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-        <parameters>$(find barista_robot_description)/config/controller_position_velocity.yaml</parameters>
-      </plugin>
-    </gazebo>
-  </xacro:macro>
 
 </robot>

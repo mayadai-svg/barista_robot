@@ -9,7 +9,7 @@
     <link name="cup_holder_tray">
       <visual>
         <geometry><cylinder radius="${tray_radius}" length="${tray_length}"/></geometry>
-        <material name="blue"/>
+        <material name="$(arg robot_name)_blue"/>
       </visual>
       <collision>
         <geometry><cylinder radius="${tray_radius}" length="${tray_length}"/></geometry>

@@ -9,7 +9,7 @@
             <geometry>
                 <cylinder length="0.005" radius="0.0352"/>
             </geometry>
-            <material name="black"/>
+            <material name="$(arg robot_name)_black"/>
         </visual>
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
@@ -40,7 +40,7 @@
             <geometry>
                 <cylinder length="0.005" radius="0.0352"/>
             </geometry>
-            <material name="black"/>
+            <material name="$(arg robot_name)_black"/>
         </visual>
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
@@ -71,7 +71,7 @@
             <geometry>
                 <sphere radius="0.0352"/>
             </geometry>
-            <material name="black"/>
+            <material name="$(arg robot_name)_black"/>
         </visual>
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>

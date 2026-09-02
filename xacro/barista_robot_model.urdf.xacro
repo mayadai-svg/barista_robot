@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista_robot">
 
   <!-- Conditional Argument -->
+  <xacro:property name="robot_name" value="$(arg robot_name)"/>
   <xacro:arg name="include_laser" default="true"/>
 
   <!-- Macro Includes -->
@@ -12,9 +13,9 @@
   <xacro:include filename="$(find barista_robot_description)/xacro/laser_scanner.xacro"/>
 
   <!-- Materials -->
-  <material name="blue"><color rgba="0.0 0.0 1.0 1"/></material>
-  <material name="black"><color rgba="0.0 0.0 0.0 1"/></material>
-  <material name="grey"><color rgba="0.75 0.75 0.75 1"/></material>
+  <material name="$(arg robot_name)_blue"><color rgba="0.0 0.0 1.0 1"/></material>
+  <material name="$(arg robot_name)_black"><color rgba="0.0 0.0 0.0 1"/></material>
+  <material name="$(arg robot_name)_grey"><color rgba="0.75 0.75 0.75 1"/></material>
 
   <!-- Base Link & Main Body -->
   <link name="base_link"/>
@@ -22,7 +23,7 @@
   <link name="main_body">
     <visual>
       <geometry><cylinder radius="0.178" length="0.155"/></geometry>
-      <material name="blue"/>
+      <material name="$(arg robot_name)_blue"/>
     </visual>
     <collision>
       <geometry><cylinder radius="0.178" length="0.155"/></geometry>
@@ -65,7 +66,7 @@
   <!-- Gazebo Core Plugins -->
   <gazebo>
     <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
-      <topic>/joint_states</topic>
+      <topic>${robot_name}/joint_states</topic>
       <update_rate>30</update_rate>
       <joint_name>joint_drive_wheel_left</joint_name>
       <joint_name>joint_drive_wheel_right</joint_name>
@@ -84,20 +85,14 @@
       <right_joint>joint_drive_wheel_right</right_joint>
       <wheel_separation>0.256</wheel_separation>
       <wheel_radius>0.0352</wheel_radius>
-      <topic>cmd_vel</topic>
+      <topic>${robot_name}/cmd_vel</topic>
       <publish_odom>true</publish_odom>
       <publish_odom_tf>true</publish_odom_tf>
       <publish_wheel_tf>true</publish_wheel_tf>
-      <odom_topic>odom</odom_topic>
+      <odom_topic>${robot_name}/odom</odom_topic>
       <tf_topic>tf</tf_topic>
-      <frame_id>odom</frame_id>
-      <child_frame_id>base_link</child_frame_id>
-    </plugin>
-  </gazebo>
-
-  <gazebo>
-    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
-      <render_engine>ogre2</render_engine>
+      <frame_id>${robot_name}/odom</frame_id>
+      <child_frame_id>${robot_name}/base_link</child_frame_id>
     </plugin>
   </gazebo>
 

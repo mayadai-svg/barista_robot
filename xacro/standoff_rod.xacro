@@ -5,7 +5,7 @@
     <link name="standoff_rod_${prefix}">
       <visual>
         <geometry><cylinder radius="${radius}" length="${length}"/></geometry>
-        <material name="grey"/>
+        <material name="$(arg robot_name)_grey"/>
       </visual>
       <collision>
         <geometry><cylinder radius="${radius}" length="${length}"/></geometry>

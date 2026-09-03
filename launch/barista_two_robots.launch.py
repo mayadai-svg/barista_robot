@@ -129,7 +129,7 @@ def generate_launch_description():
     )
 
     # RVIZ Configuration Node
-    rviz_config_dir = os.path.join(pkg_robot_description, 'rviz', 'robot_chase_rviz_config.rviz')
+    rviz_config_dir = os.path.join(pkg_robot_description, 'rviz', 'robot_chase_rviz.rviz')
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',

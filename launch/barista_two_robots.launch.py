@@ -68,7 +68,25 @@ def generate_launch_description():
         output="screen",
     )
 
-    # Load Robot State Publisher 1
+    # Static Transform Publishers to connect TF trees
+    static_tf_robot1 = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="world_to_robot1_odom",
+        arguments=[
+            "--x", "0.0",
+            "--y", "-0.5",
+            "--z", "0.0",
+            "--yaw", "3.14",
+            "--pitch", "0.0",
+            "--roll", "0.0",
+            "--frame-id", "world",
+            "--child-frame-id", robot_name_1 + "/odom",
+        ],
+        output="screen",
+    )
+
+    # Load Robot State Publisher 2
     rsp_robot2 = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
@@ -93,8 +111,25 @@ def generate_launch_description():
         output="screen",
     )
 
+    static_tf_robot2 = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="world_to_robot2_odom",
+        arguments=[
+            "--x", "0.0",
+            "--y", "0.5",
+            "--z", "0.0",
+            "--yaw", "3.14",
+            "--pitch", "0.0",
+            "--roll", "0.0",
+            "--frame-id", "world",
+            "--child-frame-id", robot_name_2 + "/odom",
+        ],
+        output="screen",
+    )
+
     # RVIZ Configuration Node
-    rviz_config_dir = os.path.join(pkg_robot_description, 'rviz', 'barista_robot_rviz.rviz')
+    rviz_config_dir = os.path.join(pkg_robot_description, 'rviz', 'robot_chase_rviz_config.rviz')
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
@@ -121,7 +156,7 @@ def generate_launch_description():
     spawn_robot1 = Node(
         package="ros_gz_sim",
         executable="create",
-        name="barista_robot_spawn",
+        name="barista_robot1_spawn",
         arguments=[
             "-name", robot_name_1,
             "-allow_renaming", "true",
@@ -138,7 +173,7 @@ def generate_launch_description():
     spawn_robot2 = Node(
         package="ros_gz_sim",
         executable="create",
-        name="barista_robot_spawn",
+        name="barista_robot2_spawn",
         arguments=[
             "-name", robot_name_2,
             "-allow_renaming", "true",
@@ -165,7 +200,6 @@ def generate_launch_description():
             "/" + robot_name_2 + "/odom" + "@nav_msgs/msg/Odometry" + "[gz.msgs.Odometry",
             "/" + robot_name_1 + "/joint_states" + "@sensor_msgs/msg/JointState" + "[gz.msgs.Model",
             "/" + robot_name_2 + "/joint_states" + "@sensor_msgs/msg/JointState" + "[gz.msgs.Model",
-            # "/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan"
         ],
         output="screen",
     )
@@ -188,7 +222,9 @@ def generate_launch_description():
             SetParameter(name="use_sim_time", value=True),
             declare_include_laser,
             rsp_robot1,
+            static_tf_robot1,
             rsp_robot2,
+            static_tf_robot2,
             rviz_node,
             gz_sim,
             spawn_robot1,

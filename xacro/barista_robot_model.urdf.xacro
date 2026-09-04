@@ -3,6 +3,7 @@
 
   <!-- Conditional Argument -->
   <xacro:property name="robot_name" value="$(arg robot_name)"/>
+  <xacro:arg name="robot_color" default="blue"/>
   <xacro:arg name="include_laser" default="true"/>
 
   <!-- Macro Includes -->
@@ -14,6 +15,7 @@
 
   <!-- Materials -->
   <material name="$(arg robot_name)_blue"><color rgba="0.0 0.0 1.0 1"/></material>
+  <material name="$(arg robot_name)_red"><color rgba="1.0 0.0 0.0 1"/></material>
   <material name="$(arg robot_name)_black"><color rgba="0.0 0.0 0.0 1"/></material>
   <material name="$(arg robot_name)_grey"><color rgba="0.75 0.75 0.75 1"/></material>
 
@@ -23,7 +25,7 @@
   <link name="main_body">
     <visual>
       <geometry><cylinder radius="0.178" length="0.155"/></geometry>
-      <material name="$(arg robot_name)_blue"/>
+      <material name="$(arg robot_name)_$(arg robot_color)"/>
     </visual>
     <collision>
       <geometry><cylinder radius="0.178" length="0.155"/></geometry>

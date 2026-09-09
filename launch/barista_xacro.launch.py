@@ -63,6 +63,8 @@ def generate_launch_description():
                     [
                         "xacro ",
                         robot_desc_path,
+                        " robot_name:=",
+                        LaunchConfiguration("model_name"),
                         " robot_color:=blue"
                         " include_laser:=",
                         LaunchConfiguration("include_laser"),

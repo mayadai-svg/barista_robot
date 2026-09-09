@@ -280,13 +280,6 @@
             <material name="black"/>
         </visual>
 
-        <collision>
-            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
-            <geometry>
-                <cylinder length="0.005" radius="0.0352"/>
-            </geometry>
-        </collision>
-
         <inertial>
             <mass value="0.01"/>
             <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -311,13 +304,6 @@
             </geometry>
             <material name="black"/>
         </visual>
-
-        <collision>
-            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
-            <geometry>
-                <cylinder length="0.005" radius="0.0352"/>
-            </geometry>
-        </collision>
 
         <inertial>
             <mass value="0.01"/>
@@ -397,13 +383,6 @@
             <material name="black"/>
         </visual>
 
-        <collision>
-            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
-            <geometry>
-                <cylinder length="0.005" radius="0.0352"/>
-            </geometry>
-        </collision>
-
         <inertial>
             <mass value="0.01"/>
             <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -428,13 +407,6 @@
             </geometry>
             <material name="black"/>
         </visual>
-
-        <collision>
-            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
-            <geometry>
-                <cylinder length="0.005" radius="0.0352"/>
-            </geometry>
-        </collision>
 
         <inertial>
             <mass value="0.01"/>
@@ -471,7 +443,7 @@
         <inertial>
             <mass value="0.01"/>
             <origin rpy="0 0 0" xyz="0 0 0"/>
-            <inertia ixx="0.00000826" ixy="0" ixz="0" iyy="00.00000826" iyz="0" izz="0.00000826"/>
+            <inertia ixx="0.000004956" ixy="0" ixz="0" iyy="00.000004956" iyz="0" izz="0.000004956"/>
         </inertial>
     </link>
 
